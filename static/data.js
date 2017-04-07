@@ -8,5 +8,8 @@ var data = {
 	}, {
 		title: "add test",
 		router: "test"
+	}, {
+		title: "add Test tesT2",
+		router: "test2"
 	}]
 }
