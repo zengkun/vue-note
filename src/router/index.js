@@ -5,9 +5,9 @@ import Detail from '@/Detail'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+	// mode: 'history',
 	routes: [{
-		path: '/vnote/detail',
+		path: '/detail',
 		name: 'Detail',
 		component: Detail
 	}]

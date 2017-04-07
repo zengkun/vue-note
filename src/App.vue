@@ -8,9 +8,9 @@
             <p>路由查询参数：{{$route.query}}</p>
             <p>路由匹配项：{{$route.matched}}</p>
         </div> -->
-        <h3>Vue 学习笔记</h3>
+        <h3 class="page-title">Vue 学习笔记</h3>
         <div v-if="isDetail" class="col-md-1 tag">
-            <router-link :to="{path: '/vnote'}" class="btn-back">
+            <router-link :to="{path: '/'}" class="btn-back">
                 <i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;返回
             </router-link>
         </div>
@@ -26,14 +26,13 @@
                     <router-view></router-view>
                 </li>
                 <li v-else v-for="item in tempItems" class="col-md-6 tag">
-                    <router-link :to='{path: "/vnote/detail", query: {name: item.router}}' v-html="item.title"></router-link>
+                    <router-link :to='{path: "/detail", query: {name: item.router}}' v-html="item.title"></router-link>
                 </li>
             </ul>
         </div>
     </div>
 </template>
 <script>
-import data from "../static/data.js"
 import router from "./router"
 export default {
     name: 'app',
@@ -53,7 +52,7 @@ export default {
     watch: {
         searchKey(newVal, oldVal) {
             router.push({
-                path: '/vnote'
+                path: '/'
             })
             if (!this.searchKey || this.searchKey.length <= 0) {
                 this.tempItems = this.items
@@ -104,7 +103,7 @@ body {
     padding: 0;
 }
 
-h3 {
+.page-title {
     color: #18aaf2;
     padding: 10px 15px 5px;
 }
