@@ -40,7 +40,6 @@ export default {
         return {
             items: data.items,
             searchKey: '',
-            redKey: [],
             tempItems: data.items
         }
     },
@@ -58,21 +57,14 @@ export default {
                 this.tempItems = this.items
             }
 
-            this.redKey.length = 0;
             this.tempItems = this.items.filter((item) => {
-                if (item.title.toUpperCase().includes(this.searchKey.toUpperCase())) {
-                    var start = item.title.toUpperCase().indexOf(this.searchKey.toUpperCase())
-                    this.redKey.push(item.title.slice(start, start + this.searchKey.length))
-                }
-                // bug:高亮关键词时，若一个标题中有多处，多处显示相同
-                // console.log(this.redKey);
                 return item.title.toUpperCase().includes(this.searchKey.toUpperCase())
             }).map((item, index) => {
                 var vKey = this.searchKey;
-                // var regExp = new RegExp(vKey, "gim");
-                var regExp = new RegExp(vKey, "im");
+                // var regExp = eval("/(" + vKey + ")/gim");
+                var regExp = new RegExp("(" + vKey + ")", "gim");
                 return {
-                    "title": item.title.replace(regExp, '<span class="red">' + this.redKey[index] + '</span>'),
+                    "title": item.title.replace(regExp, '<span class="red">$1</span>'),
                     "router": item.router
                 };
             })
